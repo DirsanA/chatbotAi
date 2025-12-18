@@ -20,31 +20,31 @@ app.post("/chat", async (req, res) => {
 
 
   try {
-    const response = await axios.post(
-      "https://openrouter.ai/api/v1/chat/completions",
+   const response = await axios.post(
+  "https://openrouter.ai/api/v1/chat/completions",
+  {
+    model: "deepseek/deepseek-r1-0528:free",
+    messages: [
       {
-        model: "deepseek/deepseek-r1-0528:free",
-       messages: [
-  {
-    role: "system",
-    content: "You are a helpful assistant. Always respond in English only."
-  },
-  {
-    role: "user",
-    content: message
-  }
-]
-
+        role: "system",
+        content: "You are a helpful assistant. Aleways answer only in Amharic strictly No matter what The language from the user. "
       },
       {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "http://localhost:5173",
-          "X-Title": "DeepSeek React AI App"
-        }
+        role: "user",
+        content: message
       }
-    );
+    ]
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "http://localhost:5173",
+      "X-Title": "DeepSeek React AI App"
+    }
+  }
+);
+
 
     res.json({
       reply: response.data.choices[0].message.content
@@ -61,6 +61,6 @@ app.post("/chat", async (req, res) => {
 
 app.listen(5000, () => {
   console.log("✅ Backend running at http://localhost:5000");
-  console.log("API KEY:", process.env.OPENROUTER_API_KEY);
+  console.log(process.env.OPENROUTER_API_KEY)
 
 });
