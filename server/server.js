@@ -61,6 +61,4 @@ app.post("/chat", async (req, res) => {
 
 app.listen(5000, () => {
   console.log("✅ Backend running at http://localhost:5000");
-  console.log(process.env.OPENROUTER_API_KEY)
-
 });
